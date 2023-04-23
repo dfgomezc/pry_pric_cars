@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 # Extensiones que no debe cargar
-#*.zip
+*.zip
 
 # C extensions
 *.so
