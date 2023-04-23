@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-# Extensiones
+# Extensiones que no debe cargar
 *.zip
 
 # C extensions
