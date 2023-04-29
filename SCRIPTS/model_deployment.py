@@ -1,10 +1,30 @@
 #!/usr/bin/python
 
-import pandas as pd
-from joblib import load
-import sys
-import os
 import numpy as np
+import xgboost as xgb
+from sklearn.datasets import make_classification
+from sklearn.model_selection import StratifiedKFold, cross_val_score
+from sklearn.utils import class_weight
+from sklearn import preprocessing
+import time
+
+import pandas as pd
+import os
+
+# Modelado
+# ==============================================================================
+from sklearn.neural_network import MLPRegressor
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import StandardScaler
+from sklearn.compose import make_column_selector
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import RandomizedSearchCV
+from sklearn.model_selection import KFold
+from sklearn import set_config
+import multiprocessing
+from joblib import dump, load
 
 
 
