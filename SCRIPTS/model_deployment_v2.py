@@ -92,7 +92,7 @@ def transformar(Year,Mileage,State,Make, Model):
 def predict_price(Year,Mileage,State,Make, Model):
     
     X_test_transformed = transformar(Year,Mileage,State,Make, Model)
-    stk = load('../OUTPUT/bgr_model_2.bin')
+    stk = load('../OUTPUT/bgr_model_3.bin')
     y_pred = stk.predict(X_test_transformed)
     #y_pred = np.exp(y_pred)*1000
     
