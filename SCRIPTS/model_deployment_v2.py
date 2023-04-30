@@ -69,7 +69,7 @@ def transformar(Year,Mileage,State,Make, Model):
         
     X["cluster_make"] = X["Make"].map(dict_maker).fillna(-1)
     X["cluster_model"] = X["Model"].map(dict_models).fillna(-1)
-    X["Mileage"] = np.log(X.loc[0,"Mileage"])
+    #X["Mileage"] = np.log(X.loc[0,"Mileage"])
     X["Year"] = X["Year"].astype(int)
     X["Age"] = int(mx_year - X["Year"])
     X["Version"] = X["Model"].apply(extraer_lineas)
@@ -107,7 +107,7 @@ if __name__ == "__main__":
     else:
 
         Year = int(sys.argv[1])
-        Mileage = int(sys.argv[2])
+        Mileage = np.log(int(sys.argv[2]))
         State = sys.argv[3]
         Make = sys.argv[4]
         Model = sys.argv[5]
