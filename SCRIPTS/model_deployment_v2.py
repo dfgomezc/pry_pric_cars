@@ -54,7 +54,9 @@ def transformar(Year,Mileage,State,Make, Model):
     X["cluster_make"] = X["Make"].map(dict_maker).fillna(-1)
     X["cluster_model"] = X["Model"].map(dict_models).fillna(-1)
     X["Mileage"] = np.log(X.loc[0,"Mileage"])
-    X["Age"] = mx_year - X["Year"]
+    X["Year"] = X["Year"].astype(int)
+    X["Age"] = int(mx_year - X["Year"])
+    
 
     col_dummies = ['Make','State','cluster_make','cluster_model']
 
@@ -63,7 +65,6 @@ def transformar(Year,Mileage,State,Make, Model):
     X = pd.concat([X,pd.DataFrame(encoder.transform(X[col_dummies]).toarray(), columns = encoder.get_feature_names_out(), index = X.index)], axis = 1)
     X = X.drop(columns=col_dummies)
 
-    encoder_model.fit(X[["Model"]])
 
     X = pd.concat([X,pd.DataFrame(encoder_model.transform(X[["Model"]]).toarray(), columns = encoder_model.get_feature_names_out(), index = X.index)], axis = 1)
     X = X.drop(columns="Model")
@@ -76,6 +77,8 @@ def predict_price(Year,Mileage,State,Make, Model):
     X_test_transformed = transformar(Year,Mileage,State,Make, Model)
     stk = load('../OUTPUT/stacked_xgb_bgr_model_1.bin')
     y_pred = stk.predict(X_test_transformed)
+    y_pred = np.exp(y_pred)*1000
+    
     return y_pred 
 
 
