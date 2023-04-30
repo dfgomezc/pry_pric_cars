@@ -34,7 +34,7 @@ import re
 #State = 'FL'
 #Make = 'Jeep'
 #Model = 'Wrangler'
-#os.getcwd()
+os.getcwd()
 
 def  extraer_lineas(modelo_veh):
     patron_version = re.compile("[A-Z]{2,}")
@@ -55,7 +55,7 @@ def  extraer_lineas(modelo_veh):
 
 
 def transformar(Year,Mileage,State,Make, Model):
-    X = pd.DataFrame([Year,Mileage,State,Make, Model], index=['Year','Mileage','State','Make', 'Model']).T    
+    X = pd.DataFrame([Year,Mileage,State,Make, Model], index=['Year','Mileage','State','Make', 'Model']).T
     mx_year = 2018
 
     encoder_model = load( '../OUTPUT/onehot_model_variables_model_1.bin')
@@ -70,6 +70,7 @@ def transformar(Year,Mileage,State,Make, Model):
     X["cluster_make"] = X["Make"].map(dict_maker).fillna(-1)
     X["cluster_model"] = X["Model"].map(dict_models).fillna(-1)
     #X["Mileage"] = np.log(X.loc[0,"Mileage"])
+    X["Mileage"] = X["Mileage"].astype(int)
     X["Year"] = X["Year"].astype(int)
     X["Age"] = int(mx_year - X["Year"])
     X["Version"] = X["Model"].apply(extraer_lineas)
