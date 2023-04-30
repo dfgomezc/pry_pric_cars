@@ -18,22 +18,23 @@ El modelo utilizado para hacer las predicciones se ha entrenado con datos histó
 ## **Requerimientos**
 Es necesario tener instalado Python 3 y las librerías que se encuentran en el archivo requirements.txt.
 Para instalar las librerías necesarias, se puede utilizar el siguiente comando en la terminal:
+
 $pip install -r requirements.txt
 
 ## **Instrucciones de uso**
 Para utilizar el microservicio, siga los siguientes pasos:
 
 1. Clone este repositorio en su máquina local:
-$git clone https://github.com/<username>/microservicio-precio-vehiculos.git
+  $git clone https://github.com/<username>/microservicio-precio-vehiculos.git
 
 2. Navegue hasta la carpeta donde se encuentra el proyecto:
-$cd microservicio-precio-vehiculos
+  $cd microservicio-precio-vehiculos
 
 3. Instale las librerías necesarias:
-$pip install -r requirements.txt
+  $pip install -r requirements.txt
 
 4. Ejecute el script que levanta la API mediante Flask:
-$python SCRIPTS/api.py
+  $python SCRIPTS/api.py
 
 5. Envíe solicitudes HTTP a la API para obtener predicciones de precios de vehículos.
-$http://13.59.116.134:5000/predict/?Year=2014&Mileage=31909&State=_FL&Make=Nissan&Model=MuranoAWD
+  $http://13.59.116.134:5000/predict/?Year=2014&Mileage=31909&State=_FL&Make=Nissan&Model=MuranoAWD
