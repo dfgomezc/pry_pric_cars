@@ -25,6 +25,7 @@ from sklearn import set_config
 import multiprocessing
 from joblib import dump, load
 import json
+import re
 
 # 2017 9913 FL Jeep 
 
@@ -37,6 +38,24 @@ Model = 'Wrangler'
 
 
 os.getcwd()
+
+def  extraer_lineas(modelo_veh):
+    patron_version = re.compile("[A-Z]{2,}")
+    extraccion = re.findall(patron_version,modelo_veh)
+
+    if len(extraccion)>0:
+        extraccion = extraccion[0]
+    else:
+        patron_4puerta = re.compile("4dr$")
+        extraccion = re.findall(patron_4puerta,modelo_veh)
+        
+        if len(extraccion)>0:
+            extraccion = '4doors'
+        else:
+            extraccion = 'No_version'
+
+    return extraccion
+
 
 def transformar(Year,Mileage,State,Make, Model):
     X = pd.DataFrame([Year,Mileage,State,Make, Model], index=['Year','Mileage','State','Make', 'Model']).T    
@@ -56,9 +75,10 @@ def transformar(Year,Mileage,State,Make, Model):
     X["Mileage"] = np.log(X.loc[0,"Mileage"])
     X["Year"] = X["Year"].astype(int)
     X["Age"] = int(mx_year - X["Year"])
+    X["Version"] = X["Model"].apply(extraer_lineas)
     
 
-    col_dummies = ['Make','State','cluster_make','cluster_model']
+    col_dummies = ['Make','State','cluster_make','cluster_model','Version']
 
     encoder = encoder_variables
 
@@ -75,9 +95,9 @@ def transformar(Year,Mileage,State,Make, Model):
 def predict_price(Year,Mileage,State,Make, Model):
     
     X_test_transformed = transformar(Year,Mileage,State,Make, Model)
-    stk = load('../OUTPUT/stacked_xgb_bgr_model_1.bin')
+    stk = load('../OUTPUT/bgr_model_2.bin')
     y_pred = stk.predict(X_test_transformed)
-    y_pred = np.exp(y_pred)*1000
+    #y_pred = np.exp(y_pred)*1000
     
     return y_pred 
 
