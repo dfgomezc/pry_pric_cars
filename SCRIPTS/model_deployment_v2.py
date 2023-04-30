@@ -72,7 +72,7 @@ def transformar(Year,Mileage,State,Make, Model):
     #X["Mileage"] = np.log(X.loc[0,"Mileage"])
     X["Mileage"] = X["Mileage"].astype(int)
     X["Year"] = X["Year"].astype(int)
-    X["Age"] = int(mx_year - X["Year"])
+    X["Age"] = int(mx_year - X.loc[0,"Year"])
     X["Version"] = X["Model"].apply(extraer_lineas)
     
 
