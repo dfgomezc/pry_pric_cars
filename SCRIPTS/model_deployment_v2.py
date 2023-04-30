@@ -29,15 +29,12 @@ import re
 
 # 2017 9913 FL Jeep 
 
-Year = 2017
-Mileage = 9913
-State = 'FL'
-Make = 'Jeep'
-Model = 'Wrangler'
-
-
-
-os.getcwd()
+#Year = 2017
+#Mileage = 9913
+#State = 'FL'
+#Make = 'Jeep'
+#Model = 'Wrangler'
+#os.getcwd()
 
 def  extraer_lineas(modelo_veh):
     patron_version = re.compile("[A-Z]{2,}")
