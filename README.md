@@ -44,7 +44,8 @@ Para utilizar el microservicio, siga los siguientes pasos:
 4. Ejecute el script que levanta la API mediante Flask:
 
 ```cmd
-  python SCRIPTS/api.py
+  cd SCRIPTS
+  python api.py
 ```
 
 5. Envíe solicitudes HTTP a la API de la máquina virtual en que se dispuso el servicio, para obtener predicciones de precios de vehículos. Para poder probrar el funcionamiento de este microservicio se dispuso la siguiente consulta HTTP.
