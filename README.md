@@ -51,6 +51,6 @@ Para utilizar el microservicio, siga los siguientes pasos:
 5. Envíe solicitudes HTTP a la API de la máquina virtual en que se dispuso el servicio, para obtener predicciones de precios de vehículos. Para poder probrar el funcionamiento de este microservicio se dispuso la siguiente consulta HTTP.
   
  ```http
-  http://3.139.235.46:5000/predict/?Year=2014&Mileage=31909&State=FL&Make=Nissan&Model=MuranoAWD
+  http://18.118.152.221:5000/predict/?Year=2014&Mileage=31909&State=FL&Make=Nissan&Model=MuranoAWD
 ```
 
